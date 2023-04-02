@@ -13,7 +13,7 @@ pipeline {
  stage('Build the application') {
    steps {
       echo 'maven build'
-      sh 'maven package'
+      sh 'mvn package'
     }
  }
 }
