@@ -14,7 +14,18 @@ pipeline {
    steps {
       echo 'maven build'
       sh 'mvn package'
-    }
+     }
  }
-}
-}
+ 
+ stage('html reports') {
+   steps {
+      publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Banking Finance/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+      }
+ }
+
+ stage('docker image formation') {
+   steps {
+      sh 'docker build -t gpavankumarreddy/dilipreddy:finance .'
+      }
+ }
+
