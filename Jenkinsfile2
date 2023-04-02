@@ -28,5 +28,12 @@ pipeline {
       sh 'docker build -t gpavankumarreddy/dilipreddy:finance .'
      }
  }
-}
-}
+ 
+ stage('docker push') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'DOCKERHUB', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+        sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
+	}
+      sh 'docker push gpavankumarreddy/rupa:finance'
+    }
+   }
