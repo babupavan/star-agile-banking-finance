@@ -37,5 +37,11 @@ pipeline {
       sh 'docker push gpavankumarreddy/dilipreddy:finance'
     }
    }
+
+  stage('deploy using ansible') {
+      steps {
+        ansiblePlaybook credentialsId: 'prod-server', disableHostKeyChecking: true, installation: 'ansible', inventory: '/etc/ansible/hosts', playbook: 'deploy-playbook.yml'
+      }
   }
  }
+}
