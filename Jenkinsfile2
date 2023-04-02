@@ -34,7 +34,7 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'DOCKERHUB', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
         sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
 	}
-      sh 'docker push gpavankumarreddy/rupa:finance'
+      sh 'docker push gpavankumarreddy/dilipreddy:finance'
     }
    }
   }
