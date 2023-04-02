@@ -28,4 +28,5 @@ pipeline {
       sh 'docker build -t gpavankumarreddy/dilipreddy:finance .'
       }
  }
-
+}
+}
