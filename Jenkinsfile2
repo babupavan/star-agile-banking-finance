@@ -1,0 +1,20 @@
+pipeline {
+
+ agent any
+ 
+ stages {
+
+ stage('checkout') {
+   steps {
+      git credentialsId: '1ef45058-8304-470a-bcb0-07e5ce24aa9a', url: 'https://github.com/gaddypavan/star-agile-banking-finance.git'
+      }
+ }
+ 
+ stage('Build the application') {
+   steps {
+      echo 'maven build'
+      sh 'maven package'
+    }
+ }
+}
+}
