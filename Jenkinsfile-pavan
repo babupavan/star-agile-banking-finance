@@ -8,21 +8,12 @@ node {
     }
 
     stage('Build') {
-        try {
-            if (env.MAVEN) {
-                sh "${MAVEN} package"
-            }
-        } catch (Exception e) {
-            echo "Build failed: ${e.message}"
-            sh 'yum install -y maven'
-            sh "${MAVEN} package"
-        }
+      sh "${MAVEN} package"
+      }
     }
-
     stage('Docker Build') {
         sh "docker build -t ${appname} ."
     }
-
     stage('Docker Run') {
         sh "${DOCKER} run -d -p 8081:8081 --name ${appname} ${appname}"
     }
