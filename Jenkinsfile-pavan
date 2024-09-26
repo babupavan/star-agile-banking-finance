@@ -20,7 +20,7 @@ node {
     }
 
     stage('Docker Build') {
-        sh "${DOCKER} build -t ${appname} ."
+        sh "docker build -t ${appname} ."
     }
 
     stage('Docker Run') {
