@@ -1,3 +1,33 @@
 node {
-  agent any
-   def git
+    agent any
+    def MAVEN = "M3"
+    def DOCKER = "DOCKER"
+    def appname = "pavan-image"
+
+    stage('Clone Repository') {
+        git credentialsId: 'git-credentials', url: 'https://github.com/babupavan/star-agile-insurance-project.git'
+    }
+
+    stage('Build') {
+        try {
+            // Check if the MAVEN environment variable is set (not null)
+            if (env.MAVEN) {
+                sh "${MAVEN} package"
+            }
+        } catch (Exception e) {
+            // Handle exception if the build fails
+            echo "Build failed: ${e.message}"
+            // Attempt to install Maven if not already installed
+            sh 'yum install -y maven'
+            sh "${MAVEN} package"
+        }
+    }
+
+    stage('Docker Build') {
+        sh "${DOCKER} build -t ${appname} ."
+    }
+
+    stage('Docker Run') {
+        sh "${DOCKER} run -d -p 8081:8081 --name ${appname} ${appname}"
+    }
+}
