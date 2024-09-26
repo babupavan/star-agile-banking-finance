@@ -10,9 +10,9 @@ node {
       sh "${MAVEN} package"
       }
     stage('Docker Build') {
-        sh "docker build -t ${appname} ."
+        sh "docker build -t pavan ."
     }
     stage('Docker Run') {
-        sh "${DOCKER} run -d -p 8081:8081 --name docker-app ${appname}"
+        sh "${DOCKER} run -d -p 8081:8081 --name docker-app pavan:latest"
     }
 }
