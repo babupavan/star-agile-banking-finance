@@ -10,7 +10,6 @@ node {
     stage('Build') {
       sh "${MAVEN} package"
       }
-    }
     stage('Docker Build') {
         sh "docker build -t ${appname} ."
     }
