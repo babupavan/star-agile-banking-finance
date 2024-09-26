@@ -13,6 +13,6 @@ node {
         sh "docker build -t ${appname} ."
     }
     stage('Docker Run') {
-        sh "${DOCKER} run -d -p 8081:8081 --name ${appname} ${appname}"
+        sh "${DOCKER} run -d -p 8081:8081 --name docker-app ${appname}"
     }
 }
