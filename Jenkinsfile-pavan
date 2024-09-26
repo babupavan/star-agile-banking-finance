@@ -4,9 +4,8 @@ node {
     def appname = "pavan-image"
 
     stage('Clone Repository') {
-        git credentialsId: 'git-credentials', url: 'https://github.com/babupavan/star-agile-health-care.git'
+        git credentialsId: 'git-credentials', url: 'https://github.com/babupavan/star-agile-banking-finance.git'
     }
-
     stage('Build') {
       sh "${MAVEN} package"
       }
